@@ -12,8 +12,13 @@ const schemas = {
   }),
   randomB: Joi.object().keys({
     count: templates.integer.required(),
-    b: templates.number.required(),
     a: templates.number.required(),
+    b: templates.number.required(),
+  }),
+  randomC: Joi.object().keys({
+    count: templates.integer.required(),
+    a: templates.number.required(),
+    c: templates.number.required(),
   }),
 };
 

@@ -10,4 +10,7 @@ router.route('/method_a')
 router.route('/method_b')
   .get(validate('randomB'), controller.methodB);
 
+router.route('/method_c')
+  .get(validate('randomC'), controller.methodC);
+
 module.exports = router;

@@ -1,24 +1,34 @@
-const { getRandomA, getRandomB } = require('@utils/laba-1');
+const { getRandomA, getRandomB, getRandomC } = require('@utils/laba-1');
 const { successRes } = require('@utils/res-builder');
 
 const methodA = (req, res) => {
-  const count = parseInt(req.query.count);
-  const l = parseInt(req.query.l);
+  const count = parseFloat(req.query.count);
+  const l = parseFloat(req.query.l);
 
-  const array = new Array(count).fill(0).map(() => getRandomA(l));
+  const array = getRandomA(count, l);
   successRes(res, { array });
 };
 
 const methodB = (req, res) => {
   const count = parseInt(req.query.count);
-  const b = parseInt(req.query.b);
-  const a = parseInt(req.query.a);
+  const a = parseFloat(req.query.a);
+  const b = parseFloat(req.query.b);
 
-  const array = new Array(count).fill(0).map(() => getRandomB(b, a));
+  const array = getRandomB(count, a, b);
+  successRes(res, { array });
+};
+
+const methodC = (req, res) => {
+  const count = parseInt(req.query.count);
+  const a = parseFloat(req.query.a);
+  const c = parseFloat(req.query.c);
+
+  const array = getRandomC(count, a, c);
   successRes(res, { array });
 };
 
 module.exports = {
   methodA,
   methodB,
+  methodC,
 };
