@@ -11,6 +11,8 @@
 
 <body>
   <canvas id="myChart"></canvas>
+  Average: <span id="average"></span><br>
+  Dispersion: <span id="dispersion"></span>
 </body>
 
 <script>
@@ -20,18 +22,17 @@
     data: {
       labels: ['0.0 - 0.1', '0.1 - 0.2', '0.2 - 0.3', '0.3 - 0.4', '0.4 - 0.5', '0.5 - 0.6', '0.6 - 0.7', '0.7 - 0.8', '0.8 - 0.9', '0.9 - 1.0'],
       datasets: [{
-        data: [12, 19, 3, 5, 2, 3],
-      }]
+        data: []
+      }, {
+        type: 'line',
+        data: []
+      }],
     },
     options: {
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
+        yAxes: [{ ticks: { beginAtZero: true } }],
+      },
+    },
   });
 </script>
 
@@ -42,14 +43,45 @@
     return groups;
   }
 
+  const setAverage = (array) => {
+    const sum = array.reduce((acc, cur) => acc + cur);
+    $('#average').html(sum / array.length);
+  }
+
+  const setDispersion = (array) => {
+    let dispersion = 0;
+    for (const el of array) dispersion += (el - 0.5) ** 2;
+    $('#dispersion').html(dispersion);
+  }
+
+  const buildLine1 = (l) => {
+    const data = [];
+    for (let i = 0.05; i < 1; i += 0.1) data.push(1 - Math.E ** (-l * i));
+    chart.data.datasets[1].data = data;
+    chart.update();
+  }
+
+  const buildLine2 = (a, b) => {
+    const data = [];
+    for (let i = 0.05; i < 1; i += 0.1) data.push((1 / (b * Math.sqrt(2 * Math.PI))) * Math.exp(-((i - a) ** 2) / (2 * b ** 2)));
+    chart.data.datasets[1].data = data;
+    chart.update();
+  }
+
   const getNumbers = () => {
-    const method = 'method_a';
-    const params = { count: 10000, l: 0.25 };
+    const method = 'method_b';
+    const params = { count: 10000, a: 2, b: 0.5 };
     $.get(`/laba1/${method}`, params, (data) => {
       const { array } = data;
       const groups = groupArray(array);
       chart.data.datasets[0].data = groups;
       chart.update();
+
+      setAverage(array);
+      setDispersion(array);
+
+      // buildLine1(params.l);
+      // buildLine2(params.a, params.b);
     });
   }
 
