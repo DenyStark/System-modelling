@@ -4,6 +4,9 @@ const router = new express.Router();
 const controller = require('@controllers/laba-1');
 const validate = require('@middleware/validate');
 
+router.route('/')
+  .get((_req, res) => res.render('laba1'));
+
 router.route('/method_a')
   .get(validate('randomA'), controller.methodA);
 

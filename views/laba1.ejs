@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>    
+  <meta charset="utf-8" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <canvas id="myChart"></canvas>
+</body>
+
+<script>
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['0.0 - 0.1', '0.1 - 0.2', '0.2 - 0.3', '0.3 - 0.4', '0.4 - 0.5', '0.5 - 0.6', '0.6 - 0.7', '0.7 - 0.8', '0.8 - 0.9', '0.9 - 1.0'],
+      datasets: [{
+        data: [12, 19, 3, 5, 2, 3],
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+<script>
+  const groupArray = (array) => {
+    const groups = new Array(10).fill(0);
+    for (const el of array) groups[Math.floor(el * 10)]++;
+    return groups;
+  }
+
+  const getNumbers = () => {
+    const method = 'method_a';
+    const params = { count: 10000, l: 0.25 };
+    $.get(`/laba1/${method}`, params, (data) => {
+      const { array } = data;
+      const groups = groupArray(array);
+      chart.data.datasets[0].data = groups;
+      chart.update();
+    });
+  }
+
+  getNumbers();
+</script>
+
+<html>
