@@ -10,12 +10,22 @@
     "errors": "pm2 logs --err",
     "eslint": "eslint --fix ."
   },
+  "_moduleAliases": {
+    "@db": "db",
+    "@controllers": "src/controllers",
+    "@middleware": "src/middleware",
+    "@routes": "src/routes",
+    "@utils": "src/utils",
+    "@workers": "src/workers"
+  },
   "repository": "https://github.com/DenyStark/System-modelling.git",
   "author": "DenyStark <denyskrolevetskyi@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "babel-eslint": "^10.0.3",
     "eslint": "^6.4.0",
+    "express": "^4.17.1",
+    "module-alias": "^2.2.1",
     "pm2": "^3.5.1"
   }
 }
