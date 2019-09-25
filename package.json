@@ -22,6 +22,7 @@
   "author": "DenyStark <denyskrolevetskyi@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
+    "@hapi/joi": "15.1",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.4.0",
     "express": "^4.17.1",
