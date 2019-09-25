@@ -1,0 +1,5 @@
+test/
+src/console.js
+public/
+
+db/migrations/

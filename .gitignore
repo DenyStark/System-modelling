@@ -5,6 +5,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# PM2
+process.yml
+process.json
+
 # Runtime data
 pids
 *.pid

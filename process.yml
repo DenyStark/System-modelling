@@ -1,0 +1,15 @@
+---
+name            : labs
+script          : server.js
+log_date_format : YYYY-MM-DD HH:mm:ss Z
+error_file      : logs/node-app.stderr.log
+out_file        : logs/node-app.stdout.log
+pid_file        : pids/tothemoon.pid
+instances       : '1'
+watch           : true
+ignore_watch    : ["node_modules/", "logs/", "pids/"]
+merge_logs      : true
+autorestart     : true
+env:
+  NODE_ENV      : development
+  NODE_PORT     : 3000
