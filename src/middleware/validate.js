@@ -6,9 +6,14 @@ const templates = {
 };
 
 const schemas = {
-  random: Joi.object().keys({
+  randomA: Joi.object().keys({
     count: templates.integer.required(),
     l: templates.number.required(),
+  }),
+  randomB: Joi.object().keys({
+    count: templates.integer.required(),
+    b: templates.number.required(),
+    a: templates.number.required(),
   }),
 };
 
